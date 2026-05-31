@@ -110,9 +110,9 @@
 
               <div class="chat-demo-messages">
 
-                <div class="demo-row bot" style="--mi:1">
+                <div class="demo-row aiagent" style="--mi:1">
                   <div class="demo-av">AI</div>
-                  <div class="demo-bubble bot">
+                  <div class="demo-bubble aiagent">
                     Hi! I'm here to help you find the right solution. What's the biggest time-drain in your business right now?
                   </div>
                 </div>
@@ -123,9 +123,9 @@
                   </div>
                 </div>
 
-                <div class="demo-row bot" style="--mi:3">
+                <div class="demo-row aiagent" style="--mi:3">
                   <div class="demo-av">AI</div>
-                  <div class="demo-bubble bot">
+                  <div class="demo-bubble aiagent">
                     That's exactly what I'm built for. I can be trained on your full product catalog, your policies, your FAQs — and handle those questions instantly, around the clock. No extra staff.
                     <br><br>
                     What does your business sell?
@@ -138,7 +138,7 @@
                   </div>
                 </div>
 
-                <div class="demo-row bot" style="--mi:5">
+                <div class="demo-row aiagent" style="--mi:5">
                   <div class="demo-av">AI</div>
                   <div class="demo-bubble typing">
                     <span></span><span></span><span></span>
@@ -649,7 +649,7 @@
 
   <!-- ═══════════════════════════════════════
        KEPRAM AI CHAT WIDGET
-       To go live: replace KEPRAM_BOT_URL below
+       To go live: replace KEPRAM_AGENT_URL below
        with your Railway backend URL.
   ═══════════════════════════════════════ -->
 
@@ -684,9 +684,9 @@
     </div>
 
     <div id="kw-messages">
-      <div class="kw-row kw-bot">
+      <div class="kw-row kw-aiagent">
         <div class="kw-av">K</div>
-        <div class="kw-bubble kw-bubble-bot">
+        <div class="kw-bubble kw-bubble-aiagent">
           Hi! I'm Kepram's AI assistant.<br><br>
           I help business owners figure out where AI can realistically save time and grow revenue — and what it would actually take to build it.<br><br>
           What kind of business are you in?
@@ -706,9 +706,9 @@
 
   <script>
   (function () {
-    /* ── CONFIG — swap this URL when Railway is live ── */
-    const KEPRAM_BOT_URL = 'https://kepram-aiagent-production.up.railway.app';
-    const BOT_ONLINE = !KEPRAM_BOT_URL.includes('localhost');
+    /* ── CONFIG — swap this URL when backend changes ── */
+    const KEPRAM_AGENT_URL = 'https://kepram-aiagent-production.up.railway.app';
+    const AGENT_ONLINE = !KEPRAM_AGENT_URL.includes('localhost');
 
     const bubble   = document.getElementById('kw-bubble');
     const panel    = document.getElementById('kw-panel');
@@ -764,7 +764,7 @@
     function appendMsg(text, role) {
       const row = document.createElement('div');
       row.className = `kw-row kw-${role}`;
-      if (role === 'bot') {
+      if (role === 'aiagent') {
         const av = document.createElement('div');
         av.className = 'kw-av';
         av.textContent = 'K';
@@ -772,7 +772,7 @@
       }
       const bub = document.createElement('div');
       bub.className = `kw-bubble kw-bubble-${role}`;
-      if (role === 'bot') bub.innerHTML = renderMd(text);
+      if (role === 'aiagent') bub.innerHTML = renderMd(text);
       else bub.textContent = text;
       row.appendChild(bub);
       messages.appendChild(row);
@@ -782,7 +782,7 @@
 
     function showTyping() {
       const row = document.createElement('div');
-      row.className = 'kw-row kw-bot';
+      row.className = 'kw-row kw-aiagent';
       row.id = 'kw-typing';
       const av = document.createElement('div');
       av.className = 'kw-av';
@@ -807,9 +807,9 @@
       input.value = '';
       input.style.height = '';
 
-      if (!BOT_ONLINE) {
+      if (!AGENT_ONLINE) {
         appendMsg(text, 'user');
-        appendMsg("I'm not fully online just yet — we're finishing our setup. In the meantime, use the contact form on this page and we'll get back to you within one business day.", 'bot');
+        appendMsg("I'm not fully online just yet — we're finishing our setup. In the meantime, use the contact form on this page and we'll get back to you within one business day.", 'aiagent');
         return;
       }
 
@@ -820,7 +820,7 @@
       showTyping();
 
       try {
-        const res = await fetch(`${KEPRAM_BOT_URL}/chat/stream`, {
+        const res = await fetch(`${KEPRAM_AGENT_URL}/chat/stream`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ message: text, history: history.slice(-10) }),
@@ -829,7 +829,7 @@
         if (!res.ok) throw new Error(res.status);
 
         hideTyping();
-        const botBub = appendMsg('', 'bot');
+        const agentBub = appendMsg('', 'aiagent');
         let buf = '', full = '';
         const reader  = res.body.getReader();
         const decoder = new TextDecoder();
@@ -847,7 +847,7 @@
             try {
               const { token } = JSON.parse(payload);
               full += token;
-              botBub.innerHTML = renderMd(full);
+              agentBub.innerHTML = renderMd(full);
               messages.scrollTop = messages.scrollHeight;
             } catch (_) {}
           }
@@ -863,7 +863,7 @@
 
       } catch (err) {
         hideTyping();
-        appendMsg('Sorry, I ran into an issue connecting. Please try again shortly.', 'bot');
+        appendMsg('Sorry, I ran into an issue connecting. Please try again shortly.', 'aiagent');
       } finally {
         input.disabled = false;
         sendBtn.disabled = false;
@@ -883,7 +883,7 @@
     });
 
     /* Show unread dot after 8s only when backend is live */
-    if (BOT_ONLINE) {
+    if (AGENT_ONLINE) {
       setTimeout(() => {
         if (!hasOpened) {
           unread.textContent = '1';

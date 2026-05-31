@@ -286,7 +286,7 @@ button{cursor:pointer;font-family:inherit}
 
 /* Animated message rows — CSS only */
 .demo-row{display:flex;align-items:flex-end;gap:8px;opacity:0}
-.demo-row.bot{justify-content:flex-start}
+.demo-row.aiagent{justify-content:flex-start}
 .demo-row.user{justify-content:flex-end}
 
 @keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -308,7 +308,7 @@ button{cursor:pointer;font-family:inherit}
   max-width:78%;padding:10px 13px;border-radius:12px;
   font-size:13px;line-height:1.55;
 }
-.demo-bubble.bot{
+.demo-bubble.aiagent{
   background:var(--navy-raised);color:var(--text-1);
   border:1px solid var(--border-mid);border-bottom-left-radius:3px;
 }
@@ -864,7 +864,7 @@ button{cursor:pointer;font-family:inherit}
 #kw-messages::-webkit-scrollbar-thumb{background:var(--border-hi);border-radius:2px}
 
 .kw-row{display:flex;align-items:flex-end;gap:7px}
-.kw-bot{justify-content:flex-start}
+.kw-aiagent{justify-content:flex-start}
 .kw-user{justify-content:flex-end}
 
 .kw-av{
@@ -878,7 +878,7 @@ button{cursor:pointer;font-family:inherit}
   max-width:80%;padding:9px 12px;
   border-radius:12px;font-size:13px;line-height:1.55;
 }
-.kw-bubble-bot{
+.kw-bubble-aiagent{
   background:var(--navy-raised);color:var(--text-1);
   border:1px solid var(--border-mid);
   border-bottom-left-radius:3px;
@@ -889,13 +889,13 @@ button{cursor:pointer;font-family:inherit}
   box-shadow:0 2px 8px rgba(59,130,246,.25);
 }
 
-/* Markdown inside bot bubbles */
-.kw-bubble-bot p{margin-bottom:7px}
-.kw-bubble-bot p:last-child{margin-bottom:0}
-.kw-bubble-bot ul{padding-left:16px;margin:5px 0}
-.kw-bubble-bot li{margin-bottom:3px}
-.kw-bubble-bot strong{color:var(--text-1);font-weight:600}
-.kw-bubble-bot a{color:var(--blue);text-decoration:underline}
+/* Markdown inside agent bubbles */
+.kw-bubble-aiagent p{margin-bottom:7px}
+.kw-bubble-aiagent p:last-child{margin-bottom:0}
+.kw-bubble-aiagent ul{padding-left:16px;margin:5px 0}
+.kw-bubble-aiagent li{margin-bottom:3px}
+.kw-bubble-aiagent strong{color:var(--text-1);font-weight:600}
+.kw-bubble-aiagent a{color:var(--blue);text-decoration:underline}
 .kw-book-btn{
   display:inline-block;margin-top:8px;
   background:var(--blue);color:#fff!important;
