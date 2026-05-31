@@ -708,6 +708,7 @@
   (function () {
     /* ── CONFIG — swap this URL when Railway is live ── */
     const KEPRAM_BOT_URL = 'http://localhost:8001';
+    const BOT_ONLINE = !KEPRAM_BOT_URL.includes('localhost');
 
     const bubble   = document.getElementById('kw-bubble');
     const panel    = document.getElementById('kw-panel');
@@ -805,6 +806,13 @@
       if (!text) return;
       input.value = '';
       input.style.height = '';
+
+      if (!BOT_ONLINE) {
+        appendMsg(text, 'user');
+        appendMsg("I'm not fully online just yet — we're finishing our setup. In the meantime, use the contact form on this page and we'll get back to you within one business day.", 'bot');
+        return;
+      }
+
       input.disabled = true;
       sendBtn.disabled = true;
 
@@ -874,13 +882,15 @@
       input.style.height = Math.min(input.scrollHeight, 100) + 'px';
     });
 
-    /* Show unread dot after 8s if panel never opened */
-    setTimeout(() => {
-      if (!hasOpened) {
-        unread.textContent = '1';
-        unread.style.display = 'flex';
-      }
-    }, 8000);
+    /* Show unread dot after 8s only when backend is live */
+    if (BOT_ONLINE) {
+      setTimeout(() => {
+        if (!hasOpened) {
+          unread.textContent = '1';
+          unread.style.display = 'flex';
+        }
+      }, 8000);
+    }
   })();
   </script>
 
