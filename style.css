@@ -236,8 +236,6 @@ button{cursor:pointer;font-family:inherit}
   width:100%;max-width:420px;
   position:relative;
   padding:32px 0;
-  transform-style:preserve-3d;
-  will-change:transform;
 }
 
 /* Floating notification badges */
@@ -267,17 +265,9 @@ button{cursor:pointer;font-family:inherit}
 
 /* Bubble conversation — no window, just floating messages */
 .bubbles-convo{
-  display:flex;flex-direction:column;gap:10px;
-  position:relative;padding:8px 0;
+  display:flex;flex-direction:column;gap:12px;
+  padding:8px 0;
 }
-
-/* Fade top and bottom edges into the hero background */
-.bubbles-convo::before,
-.bubbles-convo::after{
-  content:'';position:absolute;left:0;right:0;height:56px;pointer-events:none;z-index:2;
-}
-.bubbles-convo::before{top:0;background:linear-gradient(to bottom,var(--navy),transparent)}
-.bubbles-convo::after{bottom:0;background:linear-gradient(to top,var(--navy),transparent)}
 
 /* ── Looping bubble animation — 11s cycle, infinite ── */
 /* Each keyframe: hidden → fade in at staggered time → all visible together → fade out → repeat */
