@@ -279,17 +279,44 @@ button{cursor:pointer;font-family:inherit}
 .bubbles-convo::before{top:0;background:linear-gradient(to bottom,var(--navy),transparent)}
 .bubbles-convo::after{bottom:0;background:linear-gradient(to top,var(--navy),transparent)}
 
-@keyframes msgIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+/* ── Looping bubble animation — 11s cycle, infinite ── */
+/* Each keyframe: hidden → fade in at staggered time → all visible together → fade out → repeat */
 
-.bc-row{display:flex;align-items:flex-end;gap:9px;opacity:0;position:relative;z-index:1}
+@keyframes bc1{
+  0%,3%    {opacity:0;transform:translateY(10px)}
+  9%,76%   {opacity:1;transform:translateY(0)}
+  89%,100% {opacity:0;transform:translateY(10px)}
+}
+@keyframes bc2{
+  0%,14%   {opacity:0;transform:translateY(10px)}
+  20%,76%  {opacity:1;transform:translateY(0)}
+  89%,100% {opacity:0;transform:translateY(10px)}
+}
+@keyframes bc3{
+  0%,27%   {opacity:0;transform:translateY(10px)}
+  33%,76%  {opacity:1;transform:translateY(0)}
+  89%,100% {opacity:0;transform:translateY(10px)}
+}
+@keyframes bc4{
+  0%,41%   {opacity:0;transform:translateY(10px)}
+  47%,76%  {opacity:1;transform:translateY(0)}
+  89%,100% {opacity:0;transform:translateY(10px)}
+}
+@keyframes bc5{
+  0%,54%   {opacity:0;transform:translateY(10px)}
+  60%,76%  {opacity:1;transform:translateY(0)}
+  89%,100% {opacity:0;transform:translateY(10px)}
+}
+
+.bc-row{display:flex;align-items:flex-end;gap:9px;opacity:0}
 .bc-agent{justify-content:flex-start}
 .bc-user {justify-content:flex-end}
 
-.bc-row:nth-child(1){animation:msgIn .45s ease .4s both}
-.bc-row:nth-child(2){animation:msgIn .45s ease 1.4s both}
-.bc-row:nth-child(3){animation:msgIn .45s ease 2.6s both}
-.bc-row:nth-child(4){animation:msgIn .45s ease 3.9s both}
-.bc-row:nth-child(5){animation:msgIn .45s ease 5.0s both}
+.bc-row:nth-child(1){animation:bc1 11s ease infinite}
+.bc-row:nth-child(2){animation:bc2 11s ease infinite}
+.bc-row:nth-child(3){animation:bc3 11s ease infinite}
+.bc-row:nth-child(4){animation:bc4 11s ease infinite}
+.bc-row:nth-child(5){animation:bc5 11s ease infinite}
 
 .bc-av{
   width:28px;height:28px;border-radius:8px;flex-shrink:0;
