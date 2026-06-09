@@ -993,6 +993,17 @@ h1, h2, h3, h4, h5 {
   font-weight: 400;
 }
 
+/* Honeypot — completely hidden from humans (visually, from screen readers, and from tab order). */
+.form-honeypot {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Submission states */
 .form-error {
   font-size: 14px;

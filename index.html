@@ -534,6 +534,14 @@
           <!-- Contact form → Google Apps Script web app → Google Sheet "Kepram Leads" + email notification -->
           <form action="https://script.google.com/macros/s/AKfycbwuBxNBcbCaz_XbxqhC8OFC2ZBTHbOArDVF72St7D57LtFoaskgnBjqzjwVQA2v3FdU/exec" method="POST" class="contact-form" id="contactForm">
             <div class="form-body">
+              <!-- Honeypot: invisible to humans, filled by spam bots. Anything in it = drop the submission. -->
+              <div class="form-honeypot" aria-hidden="true">
+                <label for="website">Website</label>
+                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+              </div>
+              <!-- Time-gap check: JS stamps the page-load time; spam bots submit in <3s. -->
+              <input type="hidden" name="form_loaded_at" id="formLoadedAt">
+
               <div class="form-row">
                 <div class="form-group">
                   <label for="name">Your name</label>
@@ -656,12 +664,17 @@
     /* Lead captured badge is now pure CSS — synced to the 11s bubble cycle */
 
     /* CONTACT FORM submission — POSTs to the Apps Script web app, no redirect.
-       Apps Script saves to Google Sheet "Kepram Leads" + emails aravindmurari@gmail.com. */
+       Apps Script saves to Google Sheet "Kepram Leads" + emails aravindmurari@gmail.com.
+       Spam protection: hidden honeypot field + page-load time gap (both checked server-side). */
     const contactForm    = document.getElementById('contactForm');
     const contactSubmit  = document.getElementById('contactSubmit');
     const contactSuccess = document.getElementById('contactSuccess');
     const contactError   = document.getElementById('contactError');
     const contactBody    = contactForm.querySelector('.form-body');
+    const formLoadedAt   = document.getElementById('formLoadedAt');
+
+    /* Stamp page-load time — used by the Apps Script to reject submissions that arrive faster than a human could fill the form. */
+    if (formLoadedAt) formLoadedAt.value = Date.now();
 
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
