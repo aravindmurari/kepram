@@ -1,0 +1,47 @@
+<!--
+  Kepram wordmark — canonical implementation.
+  The geometric mark IS the "K"; "EPRĀM" follows (no doubled K).
+  The "A" is the normal Space Grotesk capital with a coral TOP BAR (macron)
+  marking the long-a pronunciation — "Kep-RAHM". The K mark is cap-matched
+  to the font (height:0.745em).
+  Requires the Space Grotesk webfont to be loaded.
+-->
+<style>
+  .wordmark{
+    font-family:"Space Grotesk", system-ui, sans-serif;
+    font-weight:600;
+    letter-spacing:-0.04em;
+    text-transform:uppercase;
+    line-height:1;
+    display:inline-flex;
+    align-items:baseline;
+    white-space:nowrap;
+    color:#17191C;            /* ink. Use #F4F1EA on dark backgrounds */
+    font-size:48px;           /* drives the whole lockup */
+  }
+  .wordmark__k{                /* the mark, used as the letter K */
+    height:0.745em; width:auto;
+    margin-right:0.05em;
+    transform:translateY(0.012em);
+    fill:currentColor; flex:none;
+  }
+  .wordmark__a{ position:relative; flex:none; }           /* normal font "A" + coral macron */
+  .wordmark__a::before{                                    /* top bar (macron) — coral, close + thick */
+    content:""; position:absolute; left:50%; top:-0.10em;
+    transform:translateX(-50%);
+    width:0.54em; height:0.12em; background:#F0502E; border-radius:1px;
+  }
+  /* one-color lockup (print/emboss/fax): drop the coral to a single ink */
+  .wordmark--mono .wordmark__a::before{ background:currentColor; }
+</style>
+
+<span class="wordmark">
+  <!-- K: the mark -->
+  <svg class="wordmark__k" viewBox="20 12 64 72" aria-hidden="true">
+    <g fill="currentColor">
+      <rect x="20" y="16" width="15" height="68"/>
+      <polygon points="35,50 64,16 82,16 47,57"/>
+      <polygon points="47,49 66,84 84,84 51,42"/>
+    </g>
+  </svg>EPR<!-- normal font "A" with a coral top bar (macron) -->
+  <span class="wordmark__a">A</span>M</span>

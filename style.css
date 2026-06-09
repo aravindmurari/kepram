@@ -44,6 +44,8 @@
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; padding: 0; }
+/* Ensure the [hidden] attribute always wins over any display:flex/grid/etc declaration. */
+[hidden] { display: none !important; }
 html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-behavior: smooth; }
 body {
   font-family: var(--text);
@@ -152,22 +154,72 @@ h1, h2, h3, h4, h5 {
   display: flex; align-items: center; justify-content: space-between;
   height: 68px;
 }
-.lockup {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
 .kmark { color: var(--ink); }
 .kmark--flare { color: var(--flare); }
 .kmark--paper { color: var(--paper); }
+
+/* Wordmark — integrated lockup.
+   The mark IS the "K" of "Kepram"; "EPRĀM" follows (no doubled K).
+   The "A" is the normal Space Grotesk capital with a coral TOP BAR (macron)
+   marking the long-a pronunciation, "Kep-RAHM".
+   One font-size on .wordmark scales the whole lockup because the mark is em-sized. */
 .wordmark {
   font-family: var(--display);
   font-weight: 600;
   letter-spacing: -0.04em;
-  font-size: 19px;
+  text-transform: uppercase;
   line-height: 1;
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
   color: var(--ink);
+  font-size: 19px;
 }
+.wordmark__k {
+  height: 0.745em;        /* cap-matched to the font's E·P·R·M */
+  width: auto;
+  margin-right: 0.05em;
+  transform: translateY(0.012em);
+  fill: currentColor;
+  flex: none;
+}
+.wordmark--paper { color: var(--paper); }
+
+/* "A" — the normal capital with a coral TOP BAR (macron) drawn above it. */
+.wordmark__a {
+  position: relative;
+  flex: none;
+  transition: color 0.5s ease;
+}
+.wordmark__a::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -0.10em;
+  transform: translateX(-50%);
+  width: 0.54em;
+  height: 0.12em;
+  background: var(--flare);
+  border-radius: 1px;
+}
+/* Scroll-activated: A transitions to match the coral bar when the user scrolls past the top. */
+.topbar.scrolled .wordmark__a { color: var(--flare); }
+/* Single-color lockup (print/emboss/fax): drop the coral to one ink */
+.wordmark--mono .wordmark__a::before { background: currentColor; }
+
+/* Hero headline treatment: coral macron above a lowercase "a" — available for future use */
+.hero-a { position: relative; display: inline-block; line-height: 1; }
+.hero-a > .bar {
+  position: absolute;
+  left: 50%;
+  bottom: 0.72em;
+  transform: translateX(-50%);
+  width: 0.48em;
+  height: 0.085em;
+  background: var(--flare);
+  border-radius: 1px;
+}
+
 
 .topnav {
   display: flex;
@@ -184,6 +236,10 @@ h1, h2, h3, h4, h5 {
 }
 .topnav a:hover { color: var(--ink); }
 .topnav .btn { padding: 10px 18px; font-size: 14px; }
+/* CTA button keeps the mono uppercase style — light graphite for visibility on the ink background.
+   --g-300 mirrors the --g-600 used on menu links, just inverted for the dark surface. */
+.topnav .btn--ink { color: var(--g-300); }
+.topnav .btn--ink:hover { color: var(--paper); }
 
 /* Hamburger */
 .hamburger {
@@ -727,7 +783,7 @@ h1, h2, h3, h4, h5 {
 }
 .steps {
   display: grid;
-  grid-template-columns: 1fr auto 1fr auto 1fr;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
   gap: 0;
   align-items: start;
 }
@@ -735,12 +791,12 @@ h1, h2, h3, h4, h5 {
   text-align: left;
   padding: 0 8px;
 }
-.step-num {
+.step-label {
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 0.18em;
   color: var(--flare);
-  margin-bottom: 16px;
+  margin-bottom: 18px;
   text-transform: uppercase;
 }
 .step-icon {
@@ -770,10 +826,10 @@ h1, h2, h3, h4, h5 {
   display: flex;
   align-items: center;
   padding-top: 86px;
-  padding-inline: 8px;
+  padding-inline: 6px;
 }
 .connector-line {
-  width: 60px;
+  width: 40px;
   height: 1px;
   background: linear-gradient(90deg, var(--g-300), var(--g-200));
 }
@@ -932,6 +988,62 @@ h1, h2, h3, h4, h5 {
   text-transform: uppercase;
   color: var(--g-600);
 }
+.form-optional {
+  color: var(--g-400);
+  font-weight: 400;
+}
+
+/* Submission states */
+.form-error {
+  font-size: 14px;
+  color: var(--flare);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.form-error a { color: var(--flare); text-decoration: underline; }
+
+.form-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px 8px 8px;
+  animation: form-success-in 0.5s cubic-bezier(.2,.7,.2,1) both;
+}
+@keyframes form-success-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.form-success-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  background: var(--flare);
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  animation: form-success-pop 0.5s cubic-bezier(.34,1.56,.64,1) 0.1s both;
+}
+@keyframes form-success-pop {
+  from { transform: scale(0.6); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.form-success h3 {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.form-success p {
+  font-size: 15px;
+  color: var(--g-600);
+  line-height: 1.55;
+  max-width: 320px;
+}
 .form-group input,
 .form-group textarea {
   font-family: var(--text);
@@ -963,8 +1075,7 @@ h1, h2, h3, h4, h5 {
   padding: clamp(48px, 6vw, 64px) 0 clamp(32px, 4vw, 48px);
 }
 #footer .wrap { display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; }
-#footer .lockup .kmark { color: var(--paper); }
-#footer .wordmark { color: var(--paper); }
+#footer .wordmark { color: var(--paper); font-size: 22px; }
 .footer-tagline {
   font-family: var(--mono);
   font-size: 11px;
