@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kepram — Custom AI Agents for Small Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17191C; --paper:#F4F1EA; --flare:#F0502E; --flare-deep:#C73D1E;
+    --petrol:#103D3A; --sand:#E5DBCB; --mist:#D9DCD7; --muted:#5a5d63;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  @page{ size:letter; margin:0; }
+  html,body{background:#fff}
+  body{
+    font-family:'Hanken Grotesk',system-ui,sans-serif;
+    color:var(--ink); font-size:10px; line-height:1.45;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .page{ width:8.5in; min-height:11in; margin:0 auto; padding:0.45in 0.55in;
+    display:flex; flex-direction:column; }
+  a{color:inherit; text-decoration:none}
+
+  /* header */
+  header{display:flex; justify-content:space-between; align-items:flex-end;
+    border-bottom:2.5px solid var(--ink); padding-bottom:9px; margin-bottom:14px}
+  .brand{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:26px;
+    letter-spacing:-.02em; line-height:1}
+  .brand .dot{color:var(--flare)}
+  .brand-sub{font-family:'Space Mono',monospace; font-size:8px; letter-spacing:.15em;
+    text-transform:uppercase; color:var(--muted); margin-top:6px}
+  .site{text-align:right; font-family:'Space Mono',monospace; font-size:9px;
+    letter-spacing:.06em; color:var(--muted); line-height:1.7}
+  .site b{color:var(--ink)}
+
+  /* hero */
+  h1{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:23px;
+    letter-spacing:-.025em; line-height:1.08; margin-bottom:6px}
+  h1 .flare{color:var(--flare)}
+  .lede{font-size:11px; color:var(--muted); margin-bottom:15px; max-width:66ch; line-height:1.55}
+
+  h2{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:12.5px;
+    margin-bottom:7px; display:flex; align-items:center; gap:7px}
+  h2::before{content:""; width:11px; height:11px; background:var(--flare);
+    border-radius:3px; flex:none}
+  section{margin-bottom:13px}
+  .muted{color:var(--muted)}
+
+  /* value list — two columns */
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:5px 22px}
+  .row{display:flex; gap:8px; align-items:flex-start; padding:1px 0}
+  .row .tick{flex:none; width:14px; height:14px; margin-top:1px; color:var(--flare-deep)}
+  .row b{font-weight:700}
+  .row .d{color:var(--muted)}
+
+  /* why-different cards */
+  .why{display:grid; grid-template-columns:repeat(4,1fr); gap:9px}
+  .wcard{border:1px solid var(--mist); border-radius:9px; padding:9px 11px}
+  .wcard .t{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:10.5px;
+    margin-bottom:3px}
+  .wcard p{font-size:9px; color:var(--muted); line-height:1.5}
+
+  /* guarantee band */
+  .guarantee{background:var(--petrol); color:#fff; border-radius:11px;
+    padding:14px 16px; margin-bottom:13px}
+  .guarantee .eyebrow{font-family:'Space Mono',monospace; font-size:8px; letter-spacing:.16em;
+    text-transform:uppercase; color:#7fd3c4; margin-bottom:6px}
+  .guarantee .gh{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14px;
+    letter-spacing:-.02em; margin-bottom:3px}
+  .guarantee .gsub{font-size:9.5px; color:#cfe3df; margin-bottom:11px; max-width:62ch}
+  .gpts{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+    border-top:1px solid rgba(255,255,255,.16); padding-top:11px}
+  .gpts .t{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:10px;
+    margin-bottom:3px}
+  .gpts p{font-size:8.5px; color:#bcd4cf; line-height:1.5}
+
+  /* how it works */
+  .steps{display:grid; grid-template-columns:repeat(4,1fr); gap:11px}
+  .stp{position:relative}
+  .stp .n{font-family:'Space Mono',monospace; font-size:8px; letter-spacing:.12em;
+    color:var(--flare); text-transform:uppercase; margin-bottom:4px}
+  .stp .t{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:10.5px;
+    margin-bottom:2px}
+  .stp p{font-size:8.5px; color:var(--muted); line-height:1.5}
+
+  footer{margin-top:auto; padding-top:11px; border-top:1px solid var(--mist);
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'Space Mono',monospace; font-size:9px; color:var(--muted)}
+  footer b{color:var(--ink)}
+  .cta{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:11px;
+    color:var(--ink)}
+  .cta .flare{color:var(--flare)}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div>
+      <div class="brand">Kepram<span class="dot">.</span></div>
+      <div class="brand-sub">Custom AI Agents for SMBs</div>
+    </div>
+    <div class="site">
+      <b>kepram.com</b><br>AI that works.
+    </div>
+  </header>
+
+  <h1>A custom AI agent for your business &mdash;<br><span class="flare">working 24/7.</span></h1>
+  <p class="lede">Kepram builds an AI assistant trained on <i>your</i> business: your products, your services, your policies. It greets every visitor, answers their questions, and turns curiosity into booked appointments and captured leads &mdash; day, night, weekends, and holidays. Set it up once. It runs.</p>
+
+  <section>
+    <h2>What it does for your business</h2>
+    <div class="grid2">
+      <div class="row"><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><div><b>Helps customers discover you.</b> <span class="d">Answers "do you do this?" the moment someone lands on your site.</span></div></div>
+      <div class="row"><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><div><b>Answers questions around the clock.</b> <span class="d">Every after-hours question becomes a lead instead of a lost customer.</span></div></div>
+      <div class="row"><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><div><b>Recommends the right fit.</b> <span class="d">Guides each customer to the product or service that suits them.</span></div></div>
+      <div class="row"><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><div><b>Books appointments.</b> <span class="d">Hands ready-to-buy customers a booking link at the right moment.</span></div></div>
+      <div class="row"><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><div><b>Captures contact details.</b> <span class="d">A real lead never slips away &mdash; names and numbers land with your team.</span></div></div>
+      <div class="row"><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><div><b>Routes to the right place.</b> <span class="d">Nearest location, the right person, directions &mdash; in one tap.</span></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why a Kepram agent, not a template bot</h2>
+    <div class="why">
+      <div class="wcard"><div class="t">Purpose-built</div><p>Trained on your real business &mdash; not a scrape of your website.</p></div>
+      <div class="wcard"><div class="t">Flat monthly cost</div><p>No per-conversation fees. No surprise invoice when traffic spikes.</p></div>
+      <div class="wcard"><div class="t">Built to grow revenue</div><p>Designed to move customers toward a sale, not just deflect questions.</p></div>
+      <div class="wcard"><div class="t">No lock-in</div><p>Cancel anytime. Your content is yours, always.</p></div>
+    </div>
+  </section>
+
+  <div class="guarantee">
+    <div class="eyebrow">The guarantee</div>
+    <div class="gh">Start risk-free. We earn it every month.</div>
+    <p class="gsub">Most small businesses can't gamble a budget on "maybe." So we take the risk off the table &mdash; and keep it there.</p>
+    <div class="gpts">
+      <div><div class="t">Live in 14 days, or setup is free</div><p>If your agent isn't live within two weeks of kickoff, you pay nothing to build it.</p></div>
+      <div><div class="t">Cancel anytime. No contracts.</div><p>Flat monthly cost, no lock-in. We keep your business by being worth it.</p></div>
+      <div><div class="t">It performs, or we refund the setup</div><p>We measure that it carries conversations to a clear next step &mdash; or your setup is refunded.</p></div>
+    </div>
+  </div>
+
+  <section>
+    <h2>How it works</h2>
+    <div class="steps">
+      <div class="stp"><div class="n">01 &middot; Understand</div><div class="t">One call.</div><p>Thirty minutes on your business and the questions you answer over and over.</p></div>
+      <div class="stp"><div class="n">02 &middot; Build</div><div class="t">A working demo.</div><p>You talk to it, break it, tell us what's wrong. We retrain until it sounds like your team.</p></div>
+      <div class="stp"><div class="n">03 &middot; Live</div><div class="t">Live on your site.</div><p>We deploy on your domain and wire leads to your team. Live in days.</p></div>
+      <div class="stp"><div class="n">04 &middot; Ongoing</div><div class="t">It just runs.</div><p>A monthly dashboard shows what it's doing. We keep it current as you change.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="cta">See it live &middot; <span class="flare">kepram.com</span></div>
+    <div><b>Aravind Murari</b> &middot; 801.244.6969 &middot; aravindmurari@gmail.com</div>
+  </footer>
+
+</div>
+</body>
+</html>
