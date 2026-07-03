@@ -8,7 +8,19 @@ This file is for **website work only**. For business strategy, BNI outreach, pip
 
 The marketing site for Kepram LLC at **https://kepram.com** (custom domain via GoDaddy → GitHub Pages).
 
-Single-page HTML/CSS/JS, no frameworks, no build step. Lives at `~/Projects/kepram/`. Repo: `github.com/aravindmurari/kepram`.
+HTML/CSS/JS, no frameworks, no build step. Lives at `~/Projects/kepram/`. Repo: `github.com/aravindmurari/kepram`.
+
+**Structure (multi-page, July 2026):** the site is organized around **two products** — **AI Front Desk** and **AI Custom Agents**.
+
+- `index.html` — homepage (kepram.com), leads with both products (Front Desk first)
+- `ai-front-desk/index.html` — served at `/ai-front-desk/` (turnkey product page, no price, "Get a quote" CTA)
+- `ai-custom-agents/index.html` — served at `/ai-custom-agents/` (bespoke product page, shows $1,500 setup + $199/mo as a starting point)
+
+**Routing convention:** directory + `index.html` → clean URL (`/ai-front-desk/`). Subpages use **root-relative** asset paths (`/style.css`, `/assets/...`) so they resolve at the domain root. Nav/footer/chat-widget markup is duplicated across all three pages (no build step, no includes) — edit all three when changing shared chrome.
+
+**Two products:**
+- **AI Front Desk** — packaged, turnkey. Voice (inbound + after-hours), missed-call SMS text-back, web chat, appointment booking. Sits on top of the client's existing phone system + CRM, no disruption. Pricing is quote-based (never show a number on its page).
+- **AI Custom Agents** — bespoke builds scoped per use case, all on one core engine (goals + knowledge files + guardrails): sales assistant, training bot, Q&A bot, internal tools, anything. The live webchat assistant (chat widget) is **one example** of a custom agent, not a standalone product. Pricing starts at $1,500 setup + $199/month.
 
 ## Brand v3 (current — June 2026)
 
@@ -30,11 +42,11 @@ Single-page HTML/CSS/JS, no frameworks, no build step. Lives at `~/Projects/kepr
 
 **Brand assets:** `assets/kepram-mark-ink.svg`, `assets/kepram-mark-coral.svg`, `assets/kepram-mark-paper.svg`, `assets/kepram-appicon.svg`.
 
-## Sections (top → bottom)
+## Homepage sections (top → bottom)
 
-1. **Nav** — sticky, integrated wordmark logo, mono-uppercase menu links, ink CTA button
-2. **Hero** — headline "Custom AI agents. / Trained on your business.", floating chat-bubble animation (11s CSS loop)
-3. **Services** — Featured AI agent block with 4-stat grid + 2 secondary cards (Software Dev, AI Training)
+1. **Nav** — sticky, integrated wordmark logo, mono-uppercase links (AI Front Desk / AI Custom Agents / Why Kepram / Process), ink CTA button. Five items, so the nav collapses to the hamburger at ≤900px (not 640px).
+2. **Hero** — headline "Put AI to work / across your business.", floating chat-bubble animation (11s CSS loop). Two CTAs point to the two product pages.
+3. **Services / Products** — `.product-duo`: two `.product-card`s (AI Front Desk first, AI Custom Agents second), each with feature list, a mono price line, and an ink CTA to its page. Below: the 2 secondary service cards (Software Dev, AI Training) are retained.
 4. **Why Kepram** — 4 numbered differentiators + 4-row comparison table (Template AI tools vs Kepram)
 5. **How It Works** — 4 phase labels (UNDERSTAND / BUILD / LIVE / ONGOING), headline "From conversation to live agent in days."
 6. **Industries** — 8 specific cards + 1 "Any other industry" catch-all (3×3 grid)
@@ -61,10 +73,12 @@ Note: the Process "Ongoing" step also mentions a **monthly performance dashboard
 
 ```
 ~/Projects/kepram/
-├── index.html
-├── style.css
-├── CNAME              ← kepram.com
-├── CLAUDE.md          ← this file
+├── index.html                 ← homepage
+├── ai-front-desk/index.html   ← /ai-front-desk/
+├── ai-custom-agents/index.html← /ai-custom-agents/
+├── style.css                  ← shared across all pages
+├── CNAME                      ← kepram.com
+├── CLAUDE.md                  ← this file
 ├── README.md
 └── assets/
     ├── kepram-mark-ink.svg
