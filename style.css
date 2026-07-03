@@ -1027,6 +1027,9 @@ h1, h2, h3, h4, h5 {
   flex-direction: column;
   gap: 20px;
 }
+/* The fields live inside .form-body, so the vertical rhythm has to be set
+   here — the form's own gap only spaces .form-body from the success panel. */
+.form-body { display: flex; flex-direction: column; gap: 22px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .form-group { display: flex; flex-direction: column; gap: 8px; }
 .form-group label {
