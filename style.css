@@ -1064,6 +1064,13 @@ h1, h2, h3, h4, h5 {
 }
 .form-error a { color: var(--flare); text-decoration: underline; }
 
+/* SMS consent / fine print under the submit button */
+.form-consent {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--g-500);
+}
+
 .form-success {
   display: flex;
   flex-direction: column;
