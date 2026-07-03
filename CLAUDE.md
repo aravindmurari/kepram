@@ -13,14 +13,16 @@ HTML/CSS/JS, no frameworks, no build step. Lives at `~/Projects/kepram/`. Repo: 
 **Structure (multi-page, July 2026):** the site is organized around **two products** — **AI Front Desk** and **AI Custom Agents**.
 
 - `index.html` — homepage (kepram.com), leads with both products (Front Desk first)
-- `ai-front-desk/index.html` — served at `/ai-front-desk/` (turnkey product page, no price, "Get a quote" CTA)
-- `ai-custom-agents/index.html` — served at `/ai-custom-agents/` (bespoke product page, shows $1,500 setup + $199/mo as a starting point)
+- `ai-front-desk/index.html` — served at `/ai-front-desk/` (turnkey product page, "Get a quote" CTA)
+- `ai-custom-agents/index.html` — served at `/ai-custom-agents/` (bespoke product page, "Get a quote" CTA)
 
 **Routing convention:** directory + `index.html` → clean URL (`/ai-front-desk/`). Subpages use **root-relative** asset paths (`/style.css`, `/assets/...`) so they resolve at the domain root. Nav/footer/chat-widget markup is duplicated across all three pages (no build step, no includes) — edit all three when changing shared chrome.
 
 **Two products:**
 - **AI Front Desk** — packaged, turnkey. Voice (inbound + after-hours), missed-call SMS text-back, web chat, appointment booking. Sits on top of the client's existing phone system + CRM, no disruption. Pricing is quote-based (never show a number on its page).
-- **AI Custom Agents** — bespoke builds scoped per use case, all on one core engine (goals + knowledge files + guardrails): sales assistant, training bot, Q&A bot, internal tools, anything. The live webchat assistant (chat widget) is **one example** of a custom agent, not a standalone product. Pricing starts at $1,500 setup + $199/month.
+- **AI Custom Agents** — bespoke builds scoped per use case, all on one core engine (goals + knowledge files + guardrails): sales assistant, training bot, Q&A bot, internal tools, anything. The live webchat assistant (chat widget) is **one example** of a custom agent, not a standalone product.
+
+**No pricing on the site (user decision, July 2026).** Do not show any dollar amounts or the setup/monthly structure anywhere. Both products drive to "Get a quote" → contact form; price is discussed and quoted after a conversation. (Internal pricing lives in the memory files, not on the site.)
 
 ## Brand v3 (current — June 2026)
 
@@ -46,7 +48,7 @@ HTML/CSS/JS, no frameworks, no build step. Lives at `~/Projects/kepram/`. Repo: 
 
 1. **Nav** — sticky, integrated wordmark logo, mono-uppercase links (AI Front Desk / AI Custom Agents / Why Kepram / Process), ink CTA button. Five items, so the nav collapses to the hamburger at ≤900px (not 640px).
 2. **Hero** — headline "Put AI to work / across your business.", floating chat-bubble animation (11s CSS loop). Two CTAs point to the two product pages.
-3. **Services / Products** — `.product-duo`: two `.product-card`s (AI Front Desk first, AI Custom Agents second), each with feature list, a mono price line, and an ink CTA to its page. Below: the 2 secondary service cards (Software Dev, AI Training) are retained.
+3. **Services / Products** — `.product-duo`: two `.product-card`s (AI Front Desk first, AI Custom Agents second), each with feature list, a mono "scoped/quoted" line (no price), and an ink CTA to its page. Below: the 2 secondary service cards (Software Dev, AI Training) are retained.
 4. **Why Kepram** — 4 numbered differentiators + 4-row comparison table (Template AI tools vs Kepram)
 5. **How It Works** — 4 phase labels (UNDERSTAND / BUILD / LIVE / ONGOING), headline "From conversation to live agent in days."
 6. **Industries** — 8 specific cards + 1 "Any other industry" catch-all (3×3 grid)
