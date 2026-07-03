@@ -1537,9 +1537,12 @@ h1, h2, h3, h4, h5 {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  align-items: flex-start;
+  align-items: stretch;
 }
+/* Full-width, centered CTA so the long product labels never crowd the card edge. */
+.product-foot .btn { width: 100%; justify-content: center; }
 .product-price {
+  align-self: flex-start;
   font-family: var(--mono);
   font-size: 12px;
   letter-spacing: 0.06em;
