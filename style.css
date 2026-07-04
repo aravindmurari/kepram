@@ -1039,11 +1039,6 @@ h1, h2, h3, h4, h5 {
   text-transform: uppercase;
   color: var(--g-600);
 }
-.form-optional {
-  color: var(--g-400);
-  font-weight: 400;
-}
-
 /* Honeypot — completely hidden from humans (visually, from screen readers, and from tab order). */
 .form-honeypot {
   position: absolute !important;
@@ -1063,13 +1058,6 @@ h1, h2, h3, h4, h5 {
   line-height: 1.5;
 }
 .form-error a { color: var(--flare); text-decoration: underline; }
-
-/* SMS consent / fine print under the submit button */
-.form-consent {
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--g-500);
-}
 
 .form-success {
   display: flex;
