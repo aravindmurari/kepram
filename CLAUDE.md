@@ -15,6 +15,10 @@ HTML/CSS/JS, no frameworks, no build step. Lives at `~/Projects/kepram/`. Repo: 
 - `index.html` — homepage (kepram.com), leads with both products (Front Desk first)
 - `ai-front-desk/index.html` — served at `/ai-front-desk/` (turnkey product page, "Get a quote" CTA)
 - `ai-custom-agents/index.html` — served at `/ai-custom-agents/` (bespoke product page, "Get a quote" CTA)
+- `terms/index.html` — served at `/terms/` (Terms of Service, legal layout: nav + `.legal` body + footer, no chat widget)
+- `privacy/index.html` — served at `/privacy/` (Privacy Policy, same legal layout)
+
+The footer (all pages) carries `.footer-links` → `/terms/` and `/privacy/`.
 
 **Routing convention:** directory + `index.html` → clean URL (`/ai-front-desk/`). Subpages use **root-relative** asset paths (`/style.css`, `/assets/...`) so they resolve at the domain root. Nav/footer/chat-widget markup is duplicated across all three pages (no build step, no includes) — edit all three when changing shared chrome.
 
