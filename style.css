@@ -1650,19 +1650,6 @@ h1, h2, h3, h4, h5 {
   line-height: 1.65;
 }
 
-/* ── Inline note (ties chat widget to Custom Agents) ── */
-.inline-note {
-  margin-top: 28px;
-  padding: 18px 22px;
-  background: var(--white);
-  border: 1px solid var(--g-200);
-  border-radius: var(--radius);
-  font-size: 15px;
-  color: var(--g-700);
-  line-height: 1.6;
-}
-.inline-note strong { color: var(--ink); font-weight: 600; }
-
 @media (max-width: 900px) {
   .product-duo { grid-template-columns: 1fr; }
   .works-inner { grid-template-columns: 1fr; gap: 32px; }

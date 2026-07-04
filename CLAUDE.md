@@ -15,7 +15,7 @@ HTML/CSS/JS, no frameworks, no build step. Lives at `~/Projects/kepram/`. Repo: 
 - `index.html` — homepage (kepram.com), leads with both products (Front Desk first)
 - `ai-front-desk/index.html` — served at `/ai-front-desk/` (turnkey product page, "Get a quote" CTA)
 - `ai-custom-agents/index.html` — served at `/ai-custom-agents/` (bespoke product page, "Get a quote" CTA)
-- `terms/index.html` — served at `/terms/` (Terms of Service, legal layout: nav + `.legal` body + footer, no chat widget)
+- `terms/index.html` — served at `/terms/` (Terms of Service, legal layout: nav + `.legal` body + footer)
 - `privacy/index.html` — served at `/privacy/` (Privacy Policy, same legal layout)
 
 The footer (all pages) carries `.footer-links` → `/terms/` and `/privacy/`.
@@ -60,7 +60,7 @@ The footer (all pages) carries `.footer-links` → `/terms/` and `/privacy/`.
 8. **Mid-CTA** — ink banner, coral CTA
 9. **Contact** — form wired to Google Apps Script (saves to "Kepram Leads" Google Sheet + emails aravindmurari@gmail.com)
 10. **Footer** — wordmark with coral macron + "AI that works." + copy
-11. **Chat widget** (floating, bottom-right) — connected to live Kepram AI agent at `https://kepram-aiagent-production.up.railway.app`
+11. **Chat widget** (floating, bottom-right) — the LeadConnector chat widget (`widgets.leadconnectorhq.com/loader.js`, `data-widget-id="6a4844c6c4ca16b4ab94534e"`), embedded on **all five pages** for SMS + A2P/10DLC. It replaced the previous custom Kepram AI agent widget (July 2026); the old `#kw-bubble` markup + IIFE and the Railway agent are no longer on the site. Any copy that pointed at "the assistant in the corner of this page" was removed when the widget was swapped.
 
 Note: the Process "Ongoing" step also mentions a **monthly performance dashboard** (bookings/contacts/directions) — added June 2026 to back the guarantee.
 
