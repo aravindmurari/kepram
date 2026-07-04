@@ -73,7 +73,8 @@ Note: the Process "Ongoing" step also mentions a **monthly performance dashboard
   - Hidden timestamp field `name="form_loaded_at"` set by JS on page load
   - Apps Script rejects if honeypot is filled OR submission arrives <3s after form load
   - On spam detection, returns `{"result":"success"}` silently so bots don't iterate
-- Fields: name (required), business, email (required), phone (optional), message (required)
+- Fields: name (required), business, email (required), message (required)
+- **A2P / 10DLC constraint (do NOT undo):** the form must **not** collect a phone number or carry SMS-consent text. The LeadConnector chat widget is the site's single SMS opt-in; a phone/SMS-collecting form on a page where the widget is embedded fails GHL's "Multiple Opt-ins" compliance check. The phone field and the `.form-consent` line were removed July 2026 for this reason — don't re-add them while the widget is live.
 
 ## Deployment
 
