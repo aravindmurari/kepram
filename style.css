@@ -1039,6 +1039,31 @@ h1, h2, h3, h4, h5 {
   text-transform: uppercase;
   color: var(--g-600);
 }
+.form-optional {
+  color: var(--g-400);
+  font-weight: 400;
+}
+
+/* SMS opt-in — explicit express consent. Checkbox + fine print, sits above the submit button. */
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--g-500);
+  cursor: pointer;
+}
+.form-consent input[type="checkbox"] {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  accent-color: var(--ink);
+  cursor: pointer;
+}
+.form-consent a { color: var(--ink); text-decoration: underline; }
+
 /* Honeypot — completely hidden from humans (visually, from screen readers, and from tab order). */
 .form-honeypot {
   position: absolute !important;

@@ -60,7 +60,7 @@ The footer (all pages) carries `.footer-links` → `/terms/` and `/privacy/`.
 8. **Mid-CTA** — ink banner, coral CTA
 9. **Contact** — form wired to Google Apps Script (saves to "Kepram Leads" Google Sheet + emails aravindmurari@gmail.com)
 10. **Footer** — wordmark with coral macron + "AI that works." + copy
-11. **Chat widget** (floating, bottom-right) — the LeadConnector chat widget (`widgets.leadconnectorhq.com/loader.js`, `data-widget-id="6a4844c6c4ca16b4ab94534e"`), embedded on **all five pages** for SMS + A2P/10DLC. It replaced the previous custom Kepram AI agent widget (July 2026); the old `#kw-bubble` markup + IIFE and the Railway agent are no longer on the site. Any copy that pointed at "the assistant in the corner of this page" was removed when the widget was swapped.
+11. **Chat widget** (floating, bottom-right) — the **custom Kepram AI bot** (`#kw-bubble` markup + IIFE, streams from the Railway agent at `https://kepram-aiagent-production.up.railway.app/chat/stream`, renders Markdown via marked.js). Embedded on the **3 content pages only** (home, `/ai-front-desk/`, `/ai-custom-agents/`) — the legal pages (`/terms/`, `/privacy/`) carry no widget. The bot collects **no phone number or personal data** — it's a pure Q&A / lead-qualification chat, so it is **not** an SMS opt-in. Its CSS lives in `style.css` (`#kw-*` rules). **History:** this custom bot was swapped out for the LeadConnector widget in July 2026 (to serve as the A2P opt-in), then restored July 2026 once the SMS opt-in moved to the contact form (see the A2P note below). The LeadConnector loader (`widgets.leadconnectorhq.com/loader.js`, `data-widget-id="6a4844c6c4ca16b4ab94534e"`) is no longer on any page.
 
 Note: the Process "Ongoing" step also mentions a **monthly performance dashboard** (bookings/contacts/directions) — added June 2026 to back the guarantee.
 
@@ -73,8 +73,8 @@ Note: the Process "Ongoing" step also mentions a **monthly performance dashboard
   - Hidden timestamp field `name="form_loaded_at"` set by JS on page load
   - Apps Script rejects if honeypot is filled OR submission arrives <3s after form load
   - On spam detection, returns `{"result":"success"}` silently so bots don't iterate
-- Fields: name (required), business, email (required), message (required)
-- **A2P / 10DLC constraint (do NOT undo):** the form must **not** collect a phone number or carry SMS-consent text. The LeadConnector chat widget is the site's single SMS opt-in; a phone/SMS-collecting form on a page where the widget is embedded fails GHL's "Multiple Opt-ins" compliance check. The phone field and the `.form-consent` line were removed July 2026 for this reason — don't re-add them while the widget is live.
+- Fields: name (required), business, email (required), phone (optional, `name="phone"`), **SMS consent checkbox** (`name="sms_consent"`, value `yes`, unchecked by default), message (required)
+- **A2P / 10DLC — the contact form is now the site's SINGLE SMS opt-in (July 2026).** The form collects a phone number + an explicit, unchecked express-consent checkbox (`.form-consent`, with STOP/HELP language and Privacy/Terms links). This works as the sole opt-in **only because the LeadConnector widget was removed** and replaced by the custom bot, which collects nothing. **Do NOT re-add the LeadConnector widget (or any second phone/SMS-collecting surface) while this form opt-in is live** — two opt-ins on the site is what GHL's "Multiple Opt-ins" check flags. If the form is the opt-in, the **GHL A2P campaign's opt-in description + screenshot must point at this form**, not the widget. Consent = box checked AND a phone number provided; a bare phone with the box unchecked is not consent.
 
 ## Deployment
 
